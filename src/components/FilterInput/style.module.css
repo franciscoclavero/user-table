@@ -1,0 +1,22 @@
+.bodyFilter {
+  display: flex;
+  height: 32px;
+  margin: 20px;
+  width: 280px;
+  border: 1px solid #D5DBE5;
+  border-radius: 3px;
+  box-shadow: 0px 1px 2px rgb(0 0 0 / 6%), 0px 0px 0px 1px rgb(134 143 160 / 16%);
+}
+.img {
+  margin: 4px;
+  opacity: 0.5;
+  width: 24px;
+}
+.input {
+  border: none;
+  width: 100%;
+  opacity: 0.3;
+}
+.input:focus{
+  outline: none;
+}

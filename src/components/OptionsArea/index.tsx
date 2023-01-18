@@ -1,9 +1,10 @@
+import FilterInput from "../FilterInput";
 import styled from "./style.module.css";
 
 const OptionsArea = () => {
   return (
     <article className={styled.optionArea}>
-      <div>Filtro</div>
+      <FilterInput />
       <div>Adicionar novo</div>
     </article>
   );
