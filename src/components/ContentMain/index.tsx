@@ -1,9 +1,10 @@
+import Header from "../Header";
 import styled from "./style.module.css";
 
 const ContentMain = () => {
   return (
     <section className={styled.content}>
-      Corpo do Projeto
+      <Header />
     </section>
   );
 };
