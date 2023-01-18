@@ -1,8 +1,8 @@
-import { styled } from "./style.module.css";
+import styled from "./style.module.css";
 
 const ContentMain = () => {
   return (
-    <section>
+    <section className={styled.content}>
       Corpo do Projeto
     </section>
   );

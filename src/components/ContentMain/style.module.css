@@ -1,0 +1,6 @@
+.content {
+  height: 100vh;
+  left: 72px;
+  position: absolute;
+  width: calc(100vw - 72px);
+}
