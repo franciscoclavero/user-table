@@ -1,12 +1,13 @@
-import Head from 'next/head'
-import Image from 'next/image'
-
 import styles from '@/pages/index.module.css'
+import Sidebar from 'src/components/Sidebar'
 
 export default function Home() {
   return (
-    <div>
-      Hello World
-    </div>
+    <>
+      <Sidebar />
+      <div>
+        Hello World
+      </div>
+    </>
   )
 }
