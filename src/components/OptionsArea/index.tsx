@@ -2,9 +2,10 @@ import styled from "./style.module.css";
 
 const OptionsArea = () => {
   return (
-    <div>
-      Opções
-    </div>
+    <article className={styled.optionArea}>
+      <div>Filtro</div>
+      <div>Adicionar novo</div>
+    </article>
   );
 };
 
