@@ -1,0 +1,26 @@
+.tableDiv {
+  height: 350px;
+  width: 100%;
+}
+.table {
+  text-align: center;
+  width: 100%;
+  border-collapse: collapse;
+}
+.table thead {
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 18px;
+  color: #687182;
+  height: 34px;
+  border-top: 1px solid #D5DBE5;
+}
+.table tbody tr {
+  height: 48px;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+}
+.table tr {
+  border-bottom: 1px solid #D5DBE5;
+}
