@@ -45,7 +45,10 @@ const TableUser = () => {
                   <td>{ formatBirthdate }</td>
                   <td>{ item.city }</td>
                   <td>{ item.country }</td>
-                  <td> Ações </td>
+                  <td> 
+                    <img src="assets/edit.png" alt="" />
+                    <img src="assets/delete.png" alt="" />
+                  </td>
                 </tr>
               );
             })
