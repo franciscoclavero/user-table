@@ -1,5 +1,6 @@
 import { useExportApi } from "hooks/useExternalApi";
 import { useEffect, useState } from "react";
+import Icon from "../Icon";
 
 import styled from "./style.module.css";
 
@@ -46,8 +47,18 @@ const TableUser = () => {
                   <td>{ item.city }</td>
                   <td>{ item.country }</td>
                   <td> 
-                    <img src="assets/edit.png" alt="" />
-                    <img src="assets/delete.png" alt="" />
+                    <Icon type="edit" classObject={{
+                      'height': "32px", 
+                      'width':"32px", 
+                      'margin': '5px', 
+                      'cursor': 'pointer', 
+                      'opacity': 0.5}}  />
+                    <Icon type="delete" classObject={{
+                      'height': "32px", 
+                      'width':"32px", 
+                      'margin': '5px', 
+                      'cursor': 'pointer', 
+                      'opacity': 0.5}}/>
                   </td>
                 </tr>
               );
