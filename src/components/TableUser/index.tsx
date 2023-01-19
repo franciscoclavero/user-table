@@ -1,5 +1,6 @@
 import { useExportApi } from "hooks/useExternalApi";
 import { useEffect, useState } from "react";
+
 import styled from "./style.module.css";
 
 export type TypeUser = {
@@ -34,11 +35,14 @@ const TableUser = () => {
         <tbody>
           {
             userList.map((item) => {
+              const birthdate = new Date(item.birthdate);
+              const formatBirthdate = `${birthdate.getDate()}/${birthdate.getMonth() + 1}/${birthdate.getFullYear()}`;
+
               return (
                 <tr key={item.id}>
                   <td>{ item.id }</td>
                   <td>{ item.name }</td>
-                  <td>{ item.birthdate }</td>
+                  <td>{ formatBirthdate }</td>
                   <td>{ item.city }</td>
                   <td>{ item.country }</td>
                   <td> Ações </td>
