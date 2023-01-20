@@ -1,13 +1,34 @@
-import { TypeUser } from "@/pages/index";
 import { useAppStore } from "hooks/useAppStore";
-import { useExportApi } from "hooks/useExternalApi";
-import { useEffect, useState } from "react";
+import { MouseEvent, useState } from "react";
 import Icon from "../Icon";
+import Pagination from "../Pagination";
 
 import styled from "./style.module.css";
 
+interface InterfaceEvent {
+  target: MouseEvent<HTMLButtonElement, MouseEvent> | null;
+}
+
 const TableUser = () => {
   const { userList } = useAppStore(state => state.userList);
+
+  const [ itensPerPage ] = useState(8);
+  const [ currentPage, setCurrentPage ] = useState(0);
+
+  const pages = Math.ceil(userList.length / itensPerPage);
+  const startIndex = currentPage * itensPerPage;
+  const endIndex = startIndex + itensPerPage;
+  const currentItens = userList.slice(startIndex, endIndex);
+
+  const handleClickPagination = (page: number = 0, e: MouseEvent<HTMLButtonElement, globalThis.MouseEvent>) => { 
+    let changePage = 0;
+    const valueTarget = (e.target as HTMLInputElement).value;
+
+    if (e.target) {
+      changePage = (valueTarget) ? Number(valueTarget) : (currentPage + page);
+    }
+    setCurrentPage(changePage);
+  };
 
   return (
     <div className={styled.tableDiv}>
@@ -24,7 +45,7 @@ const TableUser = () => {
         </thead> 
         <tbody>
           {
-            userList.map((item) => {
+            currentItens.map((item) => {
               const birthdate = new Date(item.birthdate);
               const formatBirthdate = `${birthdate.getDate()}/${birthdate.getMonth() + 1}/${birthdate.getFullYear()}`;
 
@@ -55,6 +76,12 @@ const TableUser = () => {
           }
         </tbody>
       </table>
+      <section className={styled.footer}>
+        <article className={styled.totalList}>
+          <p> Total de pessoas: {userList.length} </p>
+        </article>
+          <Pagination pages={pages} currentPage={currentPage} onClick={(event) => {handleClickPagination(0, event) }}></Pagination>
+      </section>
     </div>
   );
 };

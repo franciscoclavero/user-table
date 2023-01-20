@@ -1,5 +1,5 @@
 .tableDiv {
-  height: 350px;
+  height: 450px;
   width: 100%;
 }
 .table {
@@ -23,4 +23,35 @@
 }
 .table tr {
   border-bottom: 1px solid #D5DBE5;
+}
+.footer {
+  height: 32px;
+  position: absolute;
+  top: 575px;
+  width: 100%;
+  padding: 1px;
+
+  border-top: 1px solid #D5DBE5;
+  border-bottom: 1px solid #D5DBE5;
+
+  display: flex;
+  justify-content: space-between;
+}
+.totalList {
+  height: 100%;
+  width: 50%;
+}
+.totalList p {
+  margin: 6px;
+}
+.pagination {
+  margin-right: 5px;
+  padding: 3px;
+}
+.pagination button{
+  border: none;
+}
+.active {
+  background-color: #5E5ADB;
+  color: #fff;
 }
