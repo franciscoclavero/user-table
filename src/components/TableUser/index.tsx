@@ -1,6 +1,7 @@
 import { useAppStore } from "hooks/useAppStore";
 import { MouseEvent, MouseEventHandler, useState } from "react";
 import Icon from "../Icon";
+import Pagination from "../Pagination";
 
 import styled from "./style.module.css";
 
@@ -75,17 +76,21 @@ const TableUser = () => {
         </tbody>
       </table>
       <section className={styled.footer}>
-         <article className={styled.totalList}>
+        <article className={styled.totalList}>
           <p> Total de pessoas: {userList.length} </p>
         </article>
         <div className={styled.pagination}>
-          <button onClick={(event) => handleClickPagination(-1, event)}>Prev</button>
+          <Pagination></Pagination>
+
+
+
+          {/* <button onClick={(event) => handleClickPagination(-1, event)}>Prev</button>
           {
             Array.from(Array(pages), (item, index) => {
               return <button className={(index == currentPage) ? styled.active : ""}  key={index} value={index} onClick={(event) => handleClickPagination(index, event)}> {index + 1} </button>
             })
           }
-          <button onClick={(event) => handleClickPagination(1, event)}>Next</button>
+          <button onClick={(event) => handleClickPagination(1, event)}>Next</button> */}
         </div>
       </section>
     </div>
