@@ -1,24 +1,13 @@
+import { TypeUser } from "@/pages/index";
+import { useAppStore } from "hooks/useAppStore";
 import { useExportApi } from "hooks/useExternalApi";
 import { useEffect, useState } from "react";
 import Icon from "../Icon";
 
 import styled from "./style.module.css";
 
-export type TypeUser = {
-  id: string,
-  name: string,
-  birthdate: string,
-  country: string,
-  city: string
-};
-
 const TableUser = () => {
-  const { data } = useExportApi<TypeUser[]>('');
-  const [ userList, setUserList ] = useState<TypeUser[]>([])
-
-  useEffect(() => {
-    setUserList( data );
-  }, [data]);
+  const { userList } = useAppStore(state => state.userList);
 
   return (
     <div className={styled.tableDiv}>
