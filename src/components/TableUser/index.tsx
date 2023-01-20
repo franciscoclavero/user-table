@@ -1,18 +1,18 @@
 import { useAppStore } from "hooks/useAppStore";
-import { MouseEvent, MouseEventHandler, useState } from "react";
+import { MouseEvent, useState } from "react";
 import Icon from "../Icon";
 import Pagination from "../Pagination";
 
 import styled from "./style.module.css";
 
 interface InterfaceEvent {
-  target: MouseEvent<HTMLButtonElement, MouseEvent> | undefined;
+  target: MouseEvent<HTMLButtonElement, MouseEvent> | null;
 }
 
 const TableUser = () => {
   const { userList } = useAppStore(state => state.userList);
 
-  const [ itensPerPage, setItensPerPage ] = useState(8);
+  const [ itensPerPage ] = useState(8);
   const [ currentPage, setCurrentPage ] = useState(0);
 
   const pages = Math.ceil(userList.length / itensPerPage);
@@ -20,11 +20,12 @@ const TableUser = () => {
   const endIndex = startIndex + itensPerPage;
   const currentItens = userList.slice(startIndex, endIndex);
 
-  const handleClickPagination = (page: number = 0, e: InterfaceEvent) => { 
+  const handleClickPagination = (page: number = 0, e: MouseEvent<HTMLButtonElement, globalThis.MouseEvent>) => { 
     let changePage = 0;
+    const valueTarget = (e.target as HTMLInputElement).value;
 
     if (e.target) {
-      changePage = (e.target.value) ? Number(e.target.value) : (currentPage + page);
+      changePage = (valueTarget) ? Number(valueTarget) : (currentPage + page);
     }
     setCurrentPage(changePage);
   };
@@ -79,19 +80,7 @@ const TableUser = () => {
         <article className={styled.totalList}>
           <p> Total de pessoas: {userList.length} </p>
         </article>
-        <div className={styled.pagination}>
-          <Pagination></Pagination>
-
-
-
-          {/* <button onClick={(event) => handleClickPagination(-1, event)}>Prev</button>
-          {
-            Array.from(Array(pages), (item, index) => {
-              return <button className={(index == currentPage) ? styled.active : ""}  key={index} value={index} onClick={(event) => handleClickPagination(index, event)}> {index + 1} </button>
-            })
-          }
-          <button onClick={(event) => handleClickPagination(1, event)}>Next</button> */}
-        </div>
+          <Pagination pages={pages} currentPage={currentPage} onClick={(event) => {handleClickPagination(0, event) }}></Pagination>
       </section>
     </div>
   );
