@@ -6,6 +6,7 @@ import { useExportApi } from 'hooks/useExternalApi';
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { setUserList } from 'src/redux/reducer/userReducer';
+import ModalUser from 'src/components/ModalUser';
 
 export type TypeUser = {
   id: string,
@@ -28,6 +29,7 @@ export default function Home() {
     <main className={styled.main}>
       <Sidebar />
       <ContentMain />
+      <ModalUser />
     </main>
   );
 };
