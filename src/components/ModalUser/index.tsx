@@ -1,41 +1,55 @@
+import { postData } from "hooks/useExternalApi";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { setDisplay } from "src/redux/reducer/userReducer";
 import styled from "./style.module.css";
 
-const ModalUser = () => {
+
+interface FormDataType {
+  name: string, 
+  birthdate: string, 
+  country: string,
+  city: string,
+}
+
+const responseBody: FormDataType = {
+  name: '', 
+  birthdate: '', 
+  country: '',
+  city: '',
+}
+
+interface InterfaceModalUser {
+  display: string;
+  userId: string;
+}
+
+const ModalUser = ( { display, userId }: InterfaceModalUser) => {
+  const dispatch = useDispatch();
+
   const [ nameUser, setNameUser ] = useState('');
   const [ birthdate, setBirthdate ] = useState('');
   const [ country, setCountry ] = useState('');
   const [ city, setCity ] = useState('');
 
-  interface FormDataType {
-    name: string, 
-    birthdate: string, 
-    country: string,
-    city: string,
-  }
-
-  const responseBody: FormDataType = {
-    name: '', 
-    birthdate: '', 
-    country: '',
-    city: '',
-  }
-
   const onSubmitHandler = (event: React.FormEvent<HTMLFormElement>) => {
-      event.preventDefault();
-      responseBody.name = nameUser;
-      responseBody.birthdate = birthdate;
-      responseBody.country = country;
-      responseBody.city = city;
-      console.log(JSON.stringify(responseBody));
-
-      
+    event.preventDefault();
+    responseBody.name = nameUser;
+    responseBody.birthdate = birthdate;
+    responseBody.country = country;
+    responseBody.city = city;
+    
+    postData(responseBody);
   }
   const inputChangeHandler = (setFunction: React.Dispatch<React.SetStateAction<string>>, event: React.    ChangeEvent<HTMLInputElement>) => {
     setFunction(event.target.value);
   }
+  const handleClickCloseModal = () => {
+    dispatch( setDisplay('none') );
+  };
+
   return (
-    <div className={styled.modalBody}>
+    <div className={styled.modalBody} style={{display: display}}>
       <form onSubmit={onSubmitHandler}>
         <div>
           <label>Nome</label>
@@ -47,7 +61,8 @@ const ModalUser = () => {
         </div>
         <div>
           <label>País</label>
-          <input type="text" name="coutry" value={country} onChange={ (e) => { inputChangeHandler(setCountry, e); } }/>
+          <input type="text" name="coutry" value={country} onChange={ (e) => { inputChangeHandler(setCountry, e); }
+        }/>
         </div>
         <div>
           <label>Cidade</label>
@@ -57,6 +72,7 @@ const ModalUser = () => {
           <input type="submit" value="Enviar" />
         </div>
       </form>
+      <button onClick={handleClickCloseModal}> Fechar </button>
     </div>
   );
 };
