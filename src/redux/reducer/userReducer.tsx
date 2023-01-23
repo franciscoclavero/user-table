@@ -10,14 +10,21 @@ export const slice = createSlice({
       country: '', 
       city: ''
     }],
-    sort: ''
+    display: 'none',
+    userId: ''
   },
   reducers: {
     setUserList: (state, action) => {
       state.userList = action.payload;
+    },
+    setDisplay: (state, action) => {
+      state.display = action.payload;
+    },
+    setUserId: (state, action) => {
+      state.userId = action.payload;
     }
   }
 });
 
-export const { setUserList } = slice.actions;
+export const { setUserList, setDisplay, setUserId } = slice.actions;
 export default slice.reducer;
