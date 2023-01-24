@@ -1,9 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
+import filterReducer from "./reducer/filterReducer";
 import userReducer from "./reducer/userReducer";
 
 export const store = configureStore({
   reducer: {
-    userList: userReducer
+    userList: userReducer,
+    filterText: filterReducer
   }
 });
 

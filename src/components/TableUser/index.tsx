@@ -3,6 +3,7 @@ import { useAppStore } from "hooks/useAppStore";
 import { deleteData } from "hooks/useExternalApi";
 import { MouseEvent, useState } from "react";
 import { useDispatch } from "react-redux";
+import getFilterArray from "src/functions/filterArray";
 import { setDisplay, setUserData } from "src/redux/reducer/userReducer";
 import Icon from "../Icon";
 import Pagination from "../Pagination";
@@ -16,6 +17,7 @@ interface InterfaceEvent {
 const TableUser = () => {
   const dispatch = useDispatch();
   const { userList } = useAppStore(state => state.userList);
+  const { filterText } = useAppStore(state => state.filterText);
 
   const [ itensPerPage ] = useState(8);
   const [ currentPage, setCurrentPage ] = useState(0);
@@ -23,7 +25,8 @@ const TableUser = () => {
   const pages = Math.ceil(userList.length / itensPerPage);
   const startIndex = currentPage * itensPerPage;
   const endIndex = startIndex + itensPerPage;
-  const currentItens = userList.slice(startIndex, endIndex);
+  const userListFiltered = getFilterArray(userList, filterText);
+  const currentItens = userListFiltered.slice(startIndex, endIndex);
 
   const handleClickPagination = (page: number = 0, e: MouseEvent<HTMLButtonElement, globalThis.MouseEvent>) => { 
     let changePage = 0;
