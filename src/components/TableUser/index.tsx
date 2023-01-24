@@ -4,7 +4,10 @@ import { deleteData } from "hooks/useExternalApi";
 import { MouseEvent, useState } from "react";
 import { useDispatch } from "react-redux";
 import getFilterArray from "src/functions/filterArray";
-import { setDisplay, setUserData } from "src/redux/reducer/userReducer";
+import getSortAsc from "src/functions/sortAsc";
+import getSortDesc from "src/functions/sortDesc";
+import { setSort } from "src/redux/reducer/filterReducer";
+import { setDisplay, setUserData, setUserList } from "src/redux/reducer/userReducer";
 import Icon from "../Icon";
 import Pagination from "../Pagination";
 
@@ -18,6 +21,7 @@ const TableUser = () => {
   const dispatch = useDispatch();
   const { userList } = useAppStore(state => state.userList);
   const { filterText } = useAppStore(state => state.filterText);
+  const { sort } = useAppStore(state => state.filterText);
 
   const [ itensPerPage ] = useState(8);
   const [ currentPage, setCurrentPage ] = useState(0);
@@ -25,7 +29,7 @@ const TableUser = () => {
   const pages = Math.ceil(userList.length / itensPerPage);
   const startIndex = currentPage * itensPerPage;
   const endIndex = startIndex + itensPerPage;
-  const userListFiltered = getFilterArray(userList, filterText);
+  let userListFiltered = getFilterArray(userList, filterText);
   const currentItens = userListFiltered.slice(startIndex, endIndex);
 
   const handleClickPagination = (page: number = 0, e: MouseEvent<HTMLButtonElement, globalThis.MouseEvent>) => { 
@@ -44,17 +48,24 @@ const TableUser = () => {
   const handleClickDeleteUserOpen = (userId: number) => {
     deleteData(userId.toString());
   }
-
+  const handleClickSort = (header: string) => {
+    dispatch(
+      setUserList(
+        (sort === 'asc') ? getSortDesc([...userList], header) : getSortAsc([...userList], header) 
+      )
+    );
+    dispatch( setSort( (sort === 'asc') ? 'desc' : 'asc' ) );
+  }
   return (
     <div className={styled.tableDiv}>
       <table className={styled.table}>
         <thead>
           <tr>
-            <th>ID</th>
-            <th>Nome</th>
-            <th>Data de Aniversário</th>
-            <th>País</th>
-            <th>Cidade</th>
+            <th onClick={ () => { handleClickSort('id'); } }>ID</th>
+            <th onClick={ () => { handleClickSort('name'); } }>Nome</th>
+            <th onClick={ () => { handleClickSort('birthdate'); } }>Data de Aniversário</th>
+            <th onClick={ () => { handleClickSort('country'); } }>País</th>
+            <th onClick={ () => { handleClickSort('city'); } }>Cidade</th>
             <th>Ações</th>
           </tr>
         </thead> 
@@ -69,8 +80,8 @@ const TableUser = () => {
                   <td>{ item.id }</td>
                   <td>{ item.name }</td>
                   <td>{ formatBirthdate }</td>
-                  <td>{ item.city }</td>
                   <td>{ item.country }</td>
+                  <td>{ item.city }</td>
                   <td> 
                     <Icon type="edit" classObject={{
                       'height': "32px", 

@@ -15,6 +15,12 @@
   height: 34px;
   border-top: 1px solid #D5DBE5;
 }
+.table thead th {
+  cursor: pointer;
+}
+.table thead th:hover {
+  background-color: #D5DBE5;
+}
 .table tbody tr {
   height: 48px;
   font-weight: 500;
