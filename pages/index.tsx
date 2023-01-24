@@ -8,6 +8,7 @@ import { useDispatch } from 'react-redux';
 import { setUserList } from 'src/redux/reducer/userReducer';
 import ModalUser from 'src/components/ModalUser';
 import { useAppStore } from 'hooks/useAppStore';
+import Loader from 'src/components/Loader';
 
 export type TypeUser = {
   id: string,
@@ -34,6 +35,7 @@ export default function Home() {
       <Sidebar />
       <ContentMain />
       <ModalUser display={modalDisplay.display} />
+      <Loader />
     </main>
   );
 };
