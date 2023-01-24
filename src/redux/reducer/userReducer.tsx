@@ -10,14 +10,27 @@ export const slice = createSlice({
       country: '', 
       city: ''
     }],
-    sort: ''
+    userDataSelected: {
+      id: 0, 
+      name: '', 
+      birthdate: '', 
+      country: '', 
+      city: ''
+    },
+    display: 'none'
   },
   reducers: {
     setUserList: (state, action) => {
       state.userList = action.payload;
+    },
+    setUserData: (state, action) => {
+      state.userDataSelected = action.payload;
+    },
+    setDisplay: (state, action) => {
+      state.display = action.payload;
     }
   }
 });
 
-export const { setUserList } = slice.actions;
+export const { setUserList, setDisplay, setUserData } = slice.actions;
 export default slice.reducer;

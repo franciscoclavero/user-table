@@ -6,6 +6,8 @@ import { useExportApi } from 'hooks/useExternalApi';
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { setUserList } from 'src/redux/reducer/userReducer';
+import ModalUser from 'src/components/ModalUser';
+import { useAppStore } from 'hooks/useAppStore';
 
 export type TypeUser = {
   id: string,
@@ -17,10 +19,13 @@ export type TypeUser = {
 
 
 export default function Home() {
-  const { data } = useExportApi<TypeUser[]>('');
+  const { data, error } = useExportApi<TypeUser[]>('');
   const dispatch = useDispatch();
+  const modalDisplay = useAppStore(state => state.userList);
 
   useEffect(() => {
+    if (error === 500) {return ;};
+
     dispatch(setUserList(data));
   }, [data]);
 
@@ -28,6 +33,7 @@ export default function Home() {
     <main className={styled.main}>
       <Sidebar />
       <ContentMain />
+      <ModalUser display={modalDisplay.display} />
     </main>
   );
 };

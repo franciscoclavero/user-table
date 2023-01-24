@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import { MouseEventHandler, ReactNode } from "react";
 import { icons } from "src/constants/icons";
 
 type TypeClass = {
@@ -12,14 +12,15 @@ type TypeClass = {
 interface InterfaceIcon {
   type: string;
   classObject: TypeClass;
+  onClick?: MouseEventHandler<HTMLImageElement>;
 };
 
 
-const Icon = ({ type, classObject }: InterfaceIcon) => {
+const Icon = ({ type, classObject, onClick }: InterfaceIcon) => {
   const { url, description } = icons[type];
 
   return (
-    <img style={ classObject } src={url} alt={description} />
+    <img onClick={onClick} style={ classObject } src={url} alt={description} />
   );
 };
 
