@@ -2,7 +2,7 @@ import { useAppStore } from "hooks/useAppStore";
 import { postData, putData } from "hooks/useExternalApi";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { setDisplay, setUserData } from "src/redux/reducer/userReducer";
+import { setDisplay, setUserData, setUserList } from "src/redux/reducer/userReducer";
 import styled from "./style.module.css";
 
 interface FormDataType {
@@ -25,6 +25,7 @@ interface InterfaceModalUser {
 
 const ModalUser = ( { display }: InterfaceModalUser) => {
   const { userDataSelected } = useAppStore(state => state.userList);
+  const { userList } = useAppStore(state => state.userList);
   const dispatch = useDispatch();
 
   const [ userId, setUserId ] = useState(0);
@@ -47,15 +48,35 @@ const ModalUser = ( { display }: InterfaceModalUser) => {
     responseBody.birthdate = birthdate;
     responseBody.country = country;
     responseBody.city = city;
+    const list = [...userList];
     
-    if (userId > 0) return putData(userId.toString(), responseBody);
+    if (userId > 0) {
+      putData(userId.toString(), responseBody); 
+      const index = list.map(function (item) { return item.id; }).indexOf(userId);
+      console.log(index);
+      
+      list[index] = {
+        id: userId,
+        name: nameUser,
+        birthdate: birthdate,
+        country: country,
+        city: city
+      }
+      return dispatch( setUserList(list) );
+      return ;
+    };
 
     postData(responseBody);
+    const [lastItem] = userList.slice(-1);
+    list.push({...responseBody, id: (Number(lastItem.id) + 1)});
+
+    dispatch( setUserList(list) );
   }
   const inputChangeHandler = (setFunction: React.Dispatch<React.SetStateAction<string>>, event: React.ChangeEvent<HTMLInputElement>) => {
     setFunction(event.target.value);
   }
   const handleClickCloseModal = () => {
+    dispatch( setUserData({id: 0, name: '', birthdate: '', country: '', city: ''}) )
     dispatch( setDisplay('none') );
   };
 

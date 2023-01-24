@@ -47,6 +47,11 @@ const TableUser = () => {
   };
   const handleClickDeleteUserOpen = (userId: number) => {
     deleteData(userId.toString());
+    dispatch( 
+      setUserList(
+        userList.filter((item) => { return item.id != userId; } )
+      )
+    );
   }
   const handleClickSort = (header: string) => {
     dispatch(
