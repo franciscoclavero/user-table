@@ -57,7 +57,6 @@ const ModalUser = ( { display }: InterfaceModalUser) => {
   }
   const handleClickCloseModal = () => {
     dispatch( setDisplay('none') );
-    // dispatch( setUserData({id:0,name:'', birthdate:'', country:'', city:''}));
   };
 
   return (
