@@ -19,11 +19,13 @@ export type TypeUser = {
 
 
 export default function Home() {
-  const { data } = useExportApi<TypeUser[]>('');
+  const { data, error } = useExportApi<TypeUser[]>('');
   const dispatch = useDispatch();
   const modalDisplay = useAppStore(state => state.userList);
 
   useEffect(() => {
+    if (error === 500) {return ;};
+
     dispatch(setUserList(data));
   }, [data]);
 
@@ -31,7 +33,7 @@ export default function Home() {
     <main className={styled.main}>
       <Sidebar />
       <ContentMain />
-      <ModalUser display={modalDisplay.display} userId={modalDisplay.userId} />
+      <ModalUser display={modalDisplay.display} />
     </main>
   );
 };
