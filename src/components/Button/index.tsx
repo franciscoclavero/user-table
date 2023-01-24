@@ -1,12 +1,11 @@
 import { useDispatch } from "react-redux";
-import { setDisplay, setUserId } from "src/redux/reducer/userReducer";
+import { setDisplay } from "src/redux/reducer/userReducer";
 import styled from "./style.module.css";
 
 const Button = () => {
   const dispatch = useDispatch();
 
   const handleModalOpen = () => {
-    dispatch( setUserId('') );
     dispatch( setDisplay('block') );
   };
 

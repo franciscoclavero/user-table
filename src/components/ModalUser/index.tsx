@@ -21,10 +21,9 @@ const responseBody: FormDataType = {
 
 interface InterfaceModalUser {
   display: string;
-  userId: string;
 }
 
-const ModalUser = ( { display, userId }: InterfaceModalUser) => {
+const ModalUser = ( { display }: InterfaceModalUser) => {
   const dispatch = useDispatch();
 
   const [ nameUser, setNameUser ] = useState('');
@@ -41,7 +40,7 @@ const ModalUser = ( { display, userId }: InterfaceModalUser) => {
     
     postData(responseBody);
   }
-  const inputChangeHandler = (setFunction: React.Dispatch<React.SetStateAction<string>>, event: React.    ChangeEvent<HTMLInputElement>) => {
+  const inputChangeHandler = (setFunction: React.Dispatch<React.SetStateAction<string>>, event: React.ChangeEvent<HTMLInputElement>) => {
     setFunction(event.target.value);
   }
   const handleClickCloseModal = () => {
@@ -50,29 +49,56 @@ const ModalUser = ( { display, userId }: InterfaceModalUser) => {
 
   return (
     <div className={styled.modalBody} style={{display: display}}>
+      <div className={styled.modalTitle}>
+        <h1>Dados do Usuário</h1>
+      </div>
       <form onSubmit={onSubmitHandler}>
-        <div>
-          <label>Nome</label>
-          <input type="text" name="nameUser" value={nameUser} onChange={ (e) => { inputChangeHandler(setNameUser, e); } }/>
+        <div className={styled.bodyInput}>
+          <input 
+            className={styled.input} 
+            type="text" 
+            name="nameUser"
+            placeholder="Nome do usuário" 
+            value={nameUser} 
+            onChange={ (e) => { inputChangeHandler(setNameUser, e); } }/>
         </div>
-        <div>
-          <label>Data de Nascimento</label>
-          <input type="datetime-local" name="birthdate" value={birthdate} onChange={ (e) => { inputChangeHandler(setBirthdate, e); } }/>
+        <div className={styled.bodyInput}>
+          <input 
+            className={styled.input} 
+            type="date" 
+            name="birthdate" 
+            placeholder="Data de Nascimento"
+            value={birthdate} 
+            onChange={ (e) => { inputChangeHandler(setBirthdate, e); } }/>
         </div>
-        <div>
-          <label>País</label>
-          <input type="text" name="coutry" value={country} onChange={ (e) => { inputChangeHandler(setCountry, e); }
+        <div className={styled.bodyInput}>
+          <input 
+            className={styled.input} 
+            type="text" 
+            name="coutry" 
+            placeholder="País"
+            value={country} 
+            onChange={ (e) => { inputChangeHandler(setCountry, e); }
         }/>
         </div>
-        <div>
-          <label>Cidade</label>
-          <input type="text" name="city" value={city} onChange={ (e) => { inputChangeHandler(setCity, e); } }/>
+        <div className={styled.bodyInput}>
+          <input 
+            className={styled.input} 
+            type="text" 
+            name="city" 
+            placeholder="Cidade"
+            value={city} 
+            onChange={ (e) => { inputChangeHandler(setCity, e); } }/>
         </div>
-        <div>
-          <input type="submit" value="Enviar" />
+        <div className={styled.buttonArea}>
+          <button className={styled.buttonCreate} style={{
+              backgroundColor: '#F7F8FA',
+              boxShadow: '0px 0px 0px 1px rgba(136, 143, 170, 0.1), 0px 30px 70px rgba(26, 34, 64, 0.15), 0px 10px 30px rgba(0, 0, 0, 0.2)',
+              color: '#000'
+          }} onClick={handleClickCloseModal}> Fechar </button>
+          <input className={styled.buttonCreate} type="submit" value="Enviar" />
         </div>
       </form>
-      <button onClick={handleClickCloseModal}> Fechar </button>
     </div>
   );
 };
