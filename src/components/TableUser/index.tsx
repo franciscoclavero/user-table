@@ -1,4 +1,5 @@
 import { useAppStore } from "hooks/useAppStore";
+import { deleteData } from "hooks/useExternalApi";
 import { MouseEvent, useState } from "react";
 import Icon from "../Icon";
 import Pagination from "../Pagination";
@@ -29,6 +30,12 @@ const TableUser = () => {
     }
     setCurrentPage(changePage);
   };
+  const handleClickUpdateUserOpen = () => {
+    alert('Atualizar');
+  };
+  const handleClickDeleteUserOpen = (userId: number) => {
+    deleteData(userId.toString());
+  }
 
   return (
     <div className={styled.tableDiv}>
@@ -62,13 +69,13 @@ const TableUser = () => {
                       'width':"32px", 
                       'margin': '5px', 
                       'cursor': 'pointer', 
-                      'opacity': 0.5}}  />
+                      'opacity': 0.5}} onClick={ () => handleClickUpdateUserOpen()}/>
                     <Icon type="delete" classObject={{
                       'height': "32px", 
                       'width':"32px", 
                       'margin': '5px', 
                       'cursor': 'pointer', 
-                      'opacity': 0.5}}/>
+                      'opacity': 0.5}} onClick={ () => handleClickDeleteUserOpen(item.id)} />
                   </td>
                 </tr>
               );
