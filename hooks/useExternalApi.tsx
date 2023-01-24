@@ -36,7 +36,7 @@ export function postData(dataForm: FormDataType) {
 };
 
 export const putData = (id: string, dataForm: FormDataType) => {
-  axios.post(`https://63c82502075b3f3a91db329c.mockapi.io/user/${id}`, {
+  axios.put(`https://63c82502075b3f3a91db329c.mockapi.io/user/${id}`, {
     name: dataForm.name,
     birthdate: dataForm.birthdate,
     country: dataForm.country,

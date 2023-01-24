@@ -10,13 +10,13 @@ export const slice = createSlice({
       country: '', 
       city: ''
     }],
-    userDataSelected: [{
+    userDataSelected: {
       id: 0, 
       name: '', 
       birthdate: '', 
       country: '', 
       city: ''
-    }],
+    },
     display: 'none'
   },
   reducers: {

@@ -1,6 +1,9 @@
+import { TypeUser } from "@/pages/index";
 import { useAppStore } from "hooks/useAppStore";
 import { deleteData } from "hooks/useExternalApi";
 import { MouseEvent, useState } from "react";
+import { useDispatch } from "react-redux";
+import { setDisplay, setUserData } from "src/redux/reducer/userReducer";
 import Icon from "../Icon";
 import Pagination from "../Pagination";
 
@@ -11,6 +14,7 @@ interface InterfaceEvent {
 }
 
 const TableUser = () => {
+  const dispatch = useDispatch();
   const { userList } = useAppStore(state => state.userList);
 
   const [ itensPerPage ] = useState(8);
@@ -30,8 +34,9 @@ const TableUser = () => {
     }
     setCurrentPage(changePage);
   };
-  const handleClickUpdateUserOpen = () => {
-    alert('Atualizar');
+  const handleClickUpdateUserOpen = (item: TypeUser) => {
+    dispatch( setUserData(item) );
+    dispatch( setDisplay('block') );
   };
   const handleClickDeleteUserOpen = (userId: number) => {
     deleteData(userId.toString());
@@ -69,7 +74,7 @@ const TableUser = () => {
                       'width':"32px", 
                       'margin': '5px', 
                       'cursor': 'pointer', 
-                      'opacity': 0.5}} onClick={ () => handleClickUpdateUserOpen()}/>
+                      'opacity': 0.5}} onClick={ () => handleClickUpdateUserOpen(item)}/>
                     <Icon type="delete" classObject={{
                       'height': "32px", 
                       'width':"32px", 

@@ -31,7 +31,6 @@
 .input {
   border: none;
   width: 100%;
-  opacity: 0.3;
 }
 .input:focus{
   outline: none;
