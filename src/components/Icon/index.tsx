@@ -1,5 +1,5 @@
-import { MouseEventHandler, ReactNode } from "react";
-import { icons } from "src/constants/icons";
+import { MouseEventHandler } from "react";
+import { icons } from "../../constants/icons";
 
 type TypeClass = {
   height?: string;
