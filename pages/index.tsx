@@ -23,7 +23,7 @@ export type TypeUser = {
 
 export default function Home() {
   const dispatch = useDispatch();
-  const { data, error } = useExportApi<TypeUser[]>('');
+  const { data, error, loading } = useExportApi<TypeUser[]>('');
   const modalDisplay = useAppStore(state => state.userList);
   const loader = useAppStore(state => state.loading);
 
@@ -32,7 +32,7 @@ export default function Home() {
 
     batch(() => {
       dispatch(setUserList(data));
-      dispatch(setLoading('none'));
+      dispatch(setLoading(loading));
     })
   }, [data]);
 

@@ -2,6 +2,7 @@ import { TypeUser } from "@/pages/index";
 import { useAppStore } from "hooks/useAppStore";
 import { deleteData } from "hooks/useExternalApi";
 import { MouseEvent, useState } from "react";
+import { batch } from "react-redux";
 import { useDispatch } from "react-redux";
 import getFilterArray from "src/functions/filterArray";
 import getSortAsc from "src/functions/sortAsc";
@@ -44,29 +45,27 @@ const TableUser = () => {
   };
 
   const handleClickUpdateUserOpen = (item: TypeUser) => {
-    dispatch( setUserData(item) );
-    dispatch( setDisplay('block') );
+    batch(() => {
+      dispatch( setUserData(item) );
+      dispatch( setDisplay('block') );
+    });
   };
 
   const handleClickDeleteUserOpen = (userId: number) => {
     dispatch(setLoading('block'));
 
     deleteData(userId.toString());
-    dispatch( 
-      setUserList(
-        userList.filter((item) => { return item.id != userId; } )
-      )
-    );
-    dispatch(setLoading('none'));
+    batch(() => {
+      dispatch( setUserList( userList.filter((item) => { return item.id != userId; } ) ));
+      dispatch(setLoading('none'));
+    });
   };
 
   const handleClickSort = (header: string) => {
-    dispatch(
-      setUserList(
-        (sort === 'asc') ? getSortDesc([...userList], header) : getSortAsc([...userList], header) 
-      )
-    );
-    dispatch( setSort( (sort === 'asc') ? 'desc' : 'asc' ) );
+    batch(() => {
+      dispatch( setUserList( (sort === 'asc') ? getSortDesc([...userList], header) : getSortAsc([...userList], header) ));
+      dispatch( setSort( (sort === 'asc') ? 'desc' : 'asc' ) );
+    });
   };
 
   return (
