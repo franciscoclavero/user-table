@@ -18,8 +18,6 @@ export function useExportApi<T = unknown>(url: string, options?: AxiosRequestCon
       setData(response.data);
     }).catch((error) => {
       setError(error.response.status);
-
-      alert("Erro de banco de dados");
     });
   }, []);
 
@@ -32,8 +30,6 @@ export function postData(dataForm: FormDataType) {
     birthdate: dataForm.birthdate,
     country: dataForm.country,
     city: dataForm.city
-  }).then(() => {
-    alert("Cadastrado com sucesso!");
   });
 };
 
@@ -43,14 +39,9 @@ export const putData = (id: string, dataForm: FormDataType) => {
     birthdate: dataForm.birthdate,
     country: dataForm.country,
     city: dataForm.city
-  }).then(() => {
-    alert("Alterado com sucesso!");
   });
 };
 
 export const deleteData = (id: string) => {
-  const response = axios.delete(`https://63c82502075b3f3a91db329c.mockapi.io/user/${id}`)
-  .then(() => {
-    alert("Excluído com sucesso!");
-  });
+  const response = axios.delete(`https://63c82502075b3f3a91db329c.mockapi.io/user/${id}`);
 };

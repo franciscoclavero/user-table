@@ -7,6 +7,7 @@ import getFilterArray from "src/functions/filterArray";
 import getSortAsc from "src/functions/sortAsc";
 import getSortDesc from "src/functions/sortDesc";
 import { setSort } from "src/redux/reducer/filterReducer";
+import { setLoading } from "src/redux/reducer/loaderReduce";
 import { setDisplay, setUserData, setUserList } from "src/redux/reducer/userReducer";
 import Icon from "../Icon";
 import Pagination from "../Pagination";
@@ -41,18 +42,24 @@ const TableUser = () => {
     }
     setCurrentPage(changePage);
   };
+
   const handleClickUpdateUserOpen = (item: TypeUser) => {
     dispatch( setUserData(item) );
     dispatch( setDisplay('block') );
   };
+
   const handleClickDeleteUserOpen = (userId: number) => {
+    dispatch(setLoading('block'));
+
     deleteData(userId.toString());
     dispatch( 
       setUserList(
         userList.filter((item) => { return item.id != userId; } )
       )
     );
-  }
+    dispatch(setLoading('none'));
+  };
+
   const handleClickSort = (header: string) => {
     dispatch(
       setUserList(
@@ -60,7 +67,8 @@ const TableUser = () => {
       )
     );
     dispatch( setSort( (sort === 'asc') ? 'desc' : 'asc' ) );
-  }
+  };
+
   return (
     <div className={styled.tableDiv}>
       <table className={styled.table}>

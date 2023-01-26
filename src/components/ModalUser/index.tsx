@@ -2,6 +2,7 @@ import { useAppStore } from "hooks/useAppStore";
 import { postData, putData } from "hooks/useExternalApi";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
+import { setLoading } from "src/redux/reducer/loaderReduce";
 import { setDisplay, setUserData, setUserList } from "src/redux/reducer/userReducer";
 import styled from "./style.module.css";
 
@@ -43,6 +44,8 @@ const ModalUser = ( { display }: InterfaceModalUser) => {
   }, [userDataSelected]);
 
   const onSubmitHandler = (event: React.FormEvent<HTMLFormElement>) => {
+    dispatch(setLoading('block'));
+
     event.preventDefault();
     responseBody.name = nameUser;
     responseBody.birthdate = birthdate;
@@ -62,8 +65,9 @@ const ModalUser = ( { display }: InterfaceModalUser) => {
         country: country,
         city: city
       }
-      return dispatch( setUserList(list) );
-      return ;
+      dispatch( setUserList(list) );
+      dispatch(setLoading('none'));
+      return;
     };
 
     postData(responseBody);
@@ -71,6 +75,7 @@ const ModalUser = ( { display }: InterfaceModalUser) => {
     list.push({...responseBody, id: (Number(lastItem.id) + 1)});
 
     dispatch( setUserList(list) );
+    dispatch(setLoading('none'));
   }
   const inputChangeHandler = (setFunction: React.Dispatch<React.SetStateAction<string>>, event: React.ChangeEvent<HTMLInputElement>) => {
     setFunction(event.target.value);
