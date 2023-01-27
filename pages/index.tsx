@@ -1,15 +1,15 @@
-import ContentMain from 'src/components/ContentMain';
+import ContentMain from '../src/components/ContentMain';
 import Sidebar from '../src/components/Sidebar';
 
 import styled from '@/pages/index.module.css';
-import { useExportApi } from 'hooks/useExternalApi';
+import { useExportApi } from '../hooks/useExternalApi';
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { setUserList } from 'src/redux/reducer/userReducer';
-import ModalUser from 'src/components/ModalUser';
-import { useAppStore } from 'hooks/useAppStore';
-import Loader from 'src/components/Loader';
-import { setLoading } from 'src/redux/reducer/loaderReduce';
+import { setUserList } from '../src/redux/reducer/userReducer';
+import ModalUser from '../src/components/ModalUser';
+import { useAppStore } from '../hooks/useAppStore';
+import Loader from '../src/components/Loader';
+import { setLoading } from '../src/redux/reducer/loaderReduce';
 import { batch } from 'react-redux';
 
 export type TypeUser = {
