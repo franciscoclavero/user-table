@@ -5,7 +5,7 @@ describe("Header component ", () => {
   it("- render", () => {
     const { container } = render(<Header />);
 
-    const headerNode = screen.getByText("Pessoas");
+    const headerNode = screen.getByText("Lista de Pessoas");
 
     expect(headerNode).toBeInTheDocument;
   });
