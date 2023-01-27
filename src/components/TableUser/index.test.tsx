@@ -1,9 +1,15 @@
-import { render, screen } from "@testing-library/react";
+import { render } from "@testing-library/react";
+import { Provider } from "react-redux";
+import { store } from "../../redux/store";
 import TableUser from ".";
 
 describe("Table User ", () => {
   it("- render", () => {
-    const { container } = render(<TableUser />);
+    const { container } = render(
+      <Provider store={store}>
+        <TableUser />
+      </Provider>
+    );
 
     const tableNode = container.getElementsByClassName("table");
     const tableDivNode = container.getElementsByClassName("tableDiv");

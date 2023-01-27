@@ -15,10 +15,6 @@ import Pagination from "../Pagination";
 
 import styled from "./style.module.css";
 
-interface InterfaceEvent {
-  target: MouseEvent<HTMLButtonElement, MouseEvent> | null;
-}
-
 const TableUser = () => {
   const dispatch = useDispatch();
   const { userList } = useAppStore(state => state.userList);
