@@ -1,9 +1,9 @@
-import { useAppStore } from "hooks/useAppStore";
-import { postData, putData } from "hooks/useExternalApi";
+import { useAppStore } from "../../../hooks/useAppStore";
+import { postData, putData } from "../../../hooks/useExternalApi";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { setLoading } from "src/redux/reducer/loaderReduce";
-import { setDisplay, setUserData, setUserList } from "src/redux/reducer/userReducer";
+import { setLoading } from "../../redux/reducer/loaderReduce";
+import { setDisplay, setUserData, setUserList } from "../../redux/reducer/userReducer";
 import styled from "./style.module.css";
 
 interface FormDataType {
@@ -113,7 +113,7 @@ const ModalUser = ( { display }: InterfaceModalUser) => {
           <input 
             className={styled.input} 
             type="text" 
-            name="coutry" 
+            name="country" 
             placeholder="País"
             value={country} 
             onChange={ (e) => { inputChangeHandler(setCountry, e); }
@@ -132,11 +132,7 @@ const ModalUser = ( { display }: InterfaceModalUser) => {
           <input className={styled.buttonCreate} type="submit" value="Enviar" />
         </div>
       </form>
-          <button className={styled.buttonCreate} style={{
-              backgroundColor: '#F7F8FA',
-              boxShadow: '0px 0px 0px 1px rgba(136, 143, 170, 0.1), 0px 30px 70px rgba(26, 34, 64, 0.15), 0px 10px 30px rgba(0, 0, 0, 0.2)',
-              color: '#000'
-          }} onClick={handleClickCloseModal}> Fechar </button>
+          <button className={styled.buttonCancel} onClick={handleClickCloseModal}> Fechar </button>
     </div>
   );
 };

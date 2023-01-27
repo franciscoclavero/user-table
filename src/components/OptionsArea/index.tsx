@@ -1,6 +1,5 @@
-import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { setFilterText } from "src/redux/reducer/filterReducer";
+import { setFilterText } from "../../redux/reducer/filterReducer";
 import Button from "../Button";
 import FilterInput from "../FilterInput";
 import styled from "./style.module.css";

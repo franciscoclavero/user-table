@@ -1,23 +1,19 @@
 import { TypeUser } from "@/pages/index";
-import { useAppStore } from "hooks/useAppStore";
-import { deleteData } from "hooks/useExternalApi";
+import { useAppStore } from "../../../hooks/useAppStore";
+import { deleteData } from "../../../hooks/useExternalApi";
 import { MouseEvent, useState } from "react";
 import { batch } from "react-redux";
 import { useDispatch } from "react-redux";
-import getFilterArray from "src/functions/filterArray";
-import getSortAsc from "src/functions/sortAsc";
-import getSortDesc from "src/functions/sortDesc";
-import { setSort } from "src/redux/reducer/filterReducer";
-import { setLoading } from "src/redux/reducer/loaderReduce";
-import { setDisplay, setUserData, setUserList } from "src/redux/reducer/userReducer";
+import getFilterArray from "../../functions/filterArray";
+import getSortAsc from "../../functions/sortAsc";
+import getSortDesc from "../../functions/sortDesc";
+import { setSort } from "../../redux/reducer/filterReducer";
+import { setLoading } from "../../redux/reducer/loaderReduce";
+import { setDisplay, setUserData, setUserList } from "../../redux/reducer/userReducer";
 import Icon from "../Icon";
 import Pagination from "../Pagination";
 
 import styled from "./style.module.css";
-
-interface InterfaceEvent {
-  target: MouseEvent<HTMLButtonElement, MouseEvent> | null;
-}
 
 const TableUser = () => {
   const dispatch = useDispatch();

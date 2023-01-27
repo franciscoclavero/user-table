@@ -3,9 +3,7 @@ import styled from "./style.module.css";
 
 const Sidebar = () => {
   return (
-    <nav className={styled.sidebar}>
-
-    </nav>
+    <nav className={styled.sidebar}></nav>
   );
 };
 

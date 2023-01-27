@@ -1,7 +1,6 @@
-const getSortDesc = (array: any[], property: string = 'name') => {
-  console.log(array);
+const getSortDesc = (array: any[], property: string) => {
   if (property === 'id')
-  return array.sort((a, b) => compareNumbers(a.id, b.id));
+    return array.sort((a, b) => compareNumbers(a.id, b.id));
   
   return array.sort((a, b) => (a[property] > b[property] ? -1 : 1) );
 };
