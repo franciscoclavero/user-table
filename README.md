@@ -1,25 +1,25 @@
-# Next.js + Jest
+![Demonstration](./src/assets/project.png)
 
-This example shows how to configure Jest to work with Next.js.
+# Sistema de Gerenciamento de usuários
+Este é um projeto de Gerenciamento de pessoas utilizando a mockApi como banco de dados, podendo fazer a inserção, alteração e exclusão das pessoas cadastradas.
 
-This includes Next.js' built-in support for Global CSS, CSS Modules and TypeScript.
 
-## How to Use
+## Tecnologies
 
-Quickly get started using [Create Next App](https://github.com/vercel/next.js/tree/canary/packages/create-next-app#readme)!
+* React.JS
+* Typescript
+* Next
+* Jest
+* React Testing Library
+* Redux
+* Test Coverage
+* Axios
+* Pagination
 
-In your terminal, run the following command:
+## Run Project
 
 ```bash
-npx create-next-app --example with-jest with-jest-app
-```
-
-```bash
-yarn create next-app --example with-jest with-jest-app
-```
-
-```bash
-pnpm create next-app --example with-jest with-jest-app
+npm run dev
 ```
 
 ## Run Jest Tests
