@@ -3,7 +3,7 @@ import FilterInput from ".";
 
 describe("Filter Input ", () => {
   it("- render", () => {
-    const { container } = render(<FilterInput />);
+    const { container } = render(<FilterInput onChange={() => {}}/>);
 
     const filterNode = screen.findAllByPlaceholderText('Pesquisar');
 
