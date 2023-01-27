@@ -1,4 +1,4 @@
-![Demonstration](./src/assets/project.png)
+![Demonstration](./src/assets/user-table.png)
 
 # Sistema de Gerenciamento de usuários
 Este é um projeto de Gerenciamento de pessoas utilizando a mockApi como banco de dados, podendo fazer a inserção, alteração e exclusão das pessoas cadastradas.
